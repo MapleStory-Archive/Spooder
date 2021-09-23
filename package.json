@@ -1,0 +1,31 @@
+{
+  "name": "spooder",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/bot.js",
+  "scripts": {
+    "test": "node test.js",
+    "register": "node commandRegister.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iRiceCrispy/Spooder.git"
+  },
+  "author": "iRiceCrispy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iRiceCrispy/Spooder/issues"
+  },
+  "homepage": "https://github.com/iRiceCrispy/Spooder#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.22.0",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.7",
+    "mongoose-autopopulate": "^0.16.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  }
+}

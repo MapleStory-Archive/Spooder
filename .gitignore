@@ -1,0 +1,11 @@
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+
+# Used for dev/test
+test.js
+src/commands/updateCommand.js
+basecommand.js
+commandRegister.js
