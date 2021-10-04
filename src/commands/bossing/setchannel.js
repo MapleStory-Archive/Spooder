@@ -1,15 +1,47 @@
+const db = require('../../util/database/index.js');
+
 module.exports = {
     data: {
-        name: '',
-        description: '',
+        name: 'setchannel',
+        description: 'Set a text channel for the bot to post stuff in.',
         options: [{
-            name: '',
-            description: '',
-            type: '',
+            name: 'type',
+            description: 'Select which type of channel you would like to set. (Drops | Sales | Paychecks)',
+            type: 3,
+            required: true,
+            choices: [{
+                name: 'Drops',
+                value: 'drops',
+            }, {
+                name: 'Sales',
+                value: 'sales',
+            }, {
+                name: 'Paychecks',
+                value: 'paychecks',
+            }],
+        }, {
+            name: 'channel',
+            description: 'Input the text channel you would like to set to.',
+            type: 7,
             required: true,
         }],
     },
     async execute(interaction) {
-        console.log(interaction);
+        const Guild = await db.Guild.findOne({ id: interaction.guild.id });
+        const type = interaction.options.getString('type');
+        const channel = interaction.options.getChannel('channel');
+
+        if (type === 'drops') {
+            await Guild.updateOne({ $set: { dropsChannelId: channel.id } });
+            return interaction.reply({ embeds: [{ description: `The \`drops\` channel has been sucessfully set to ${channel}` }] });
+        }
+        else if (type === 'Sales') {
+            await Guild.updateOne({ $set: { salesChannelId: channel.id } });
+            return interaction.reply({ embeds: [{ description: `The \`Sales\` channel has been sucessfully set to ${channel}` }] });
+        }
+        else {
+            await Guild.updateOne({ $set: { paychecksChannelId: channel.id } });
+            return interaction.reply({ embeds: [{ description: `The \`paychecks\` channel has been sucessfully set to ${channel}` }] });
+        }
     },
 };

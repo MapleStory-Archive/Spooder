@@ -2,6 +2,9 @@ module.exports = (mongoose) => {
     const guildSchema = new mongoose.Schema({
         id: { type: String, unique: true },
         name: String,
+        dropsChannelId: String,
+        salesChannelId: String,
+        paychecksChannelId: String,
         parties: [String],
     }, {
         versionKey: false,
