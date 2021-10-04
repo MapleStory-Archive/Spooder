@@ -1,12 +1,12 @@
 module.exports = {
     data: {
-        name: '',
-        description: '',
+        name: 'paycheck',
+        description: 'Check your or another player\'s paycheck.',
         options: [{
-            name: '',
-            description: '',
-            type: '',
-            required: true,
+            name: 'user',
+            description: 'Input the user here.',
+            type: 6,
+            required: false,
         }],
     },
     async execute(interaction) {

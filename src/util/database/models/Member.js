@@ -3,6 +3,7 @@ module.exports = (mongoose) => {
         guildId: String,
         userId: String,
         name: String,
+        drops: [{ type: mongoose.ObjectId, ref: 'Drop' }],
     }, {
         versionKey: false,
     });

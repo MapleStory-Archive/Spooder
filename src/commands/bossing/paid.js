@@ -1,11 +1,11 @@
 module.exports = {
     data: {
-        name: '',
-        description: '',
+        name: 'paid',
+        description: 'Mark payments for a user.',
         options: [{
-            name: '',
-            description: '',
-            type: '',
+            name: 'user',
+            description: 'Input the user getting paid here.',
+            type: 6,
             required: true,
         }],
     },

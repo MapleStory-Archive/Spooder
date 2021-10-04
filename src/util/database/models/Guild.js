@@ -5,6 +5,8 @@ module.exports = (mongoose) => {
         dropsChannelId: String,
         salesChannelId: String,
         paychecksChannelId: String,
+        dropCounter: Number,
+        drops: [{ type: mongoose.ObjectId, ref: 'Drop' }],
         parties: [String],
     }, {
         versionKey: false,

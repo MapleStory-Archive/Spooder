@@ -1,0 +1,566 @@
+{   
+    "Lotusroid": {
+        "name": "Lotusroid",
+        "image": "https://i.imgur.com/Gr74gjJ.png"
+    },
+    "Berserked": {
+        "name": "Berserked",
+        "image": "https://i.imgur.com/GE7HIcR.png"
+    },
+    "Damaged Black Heart": {
+        "name": "Damaged Black Heart",
+        "image": "https://i.imgur.com/I2bi7I4.png"
+    },
+    "Damienroid": {
+        "name": "Damienroid",
+        "image": "https://i.imgur.com/BrvezZT.png"
+    },
+    "Ruin Force Shield": {
+        "name": "Ruin Force Shield",
+        "image": "https://i.imgur.com/mtBw2gd.png"
+    },
+    "Magic Eyepatch": {
+        "name": "Magic Eyepatch",
+        "image": "https://i.imgur.com/ILYpSwz.png"
+    },
+    "Lucidroid": {
+        "name": "Lucidroid",
+        "image": "https://i.imgur.com/2DQbsIV.png"
+    },
+    "Dreamy Belt": {
+        "name": "Dreamy Belt",
+        "image": "https://i.imgur.com/Axg4m4c.png"
+    },
+    "Cursed Red Spellbook": {
+        "name": "Cursed Red Spellbook",
+        "image": "https://i.imgur.com/QrBpc88.png"
+    },
+    "Cursed Blue Spellbook": {
+        "name": "Cursed Blue Spellbook",
+        "image": "https://i.imgur.com/yXnev85.png"
+    },
+    "Cursed Green Spellbook": {
+        "name": "Cursed Green Spellbook",
+        "image": "https://i.imgur.com/4Bp2jWI.png"
+    },
+    "Cursed Yellow Spellbook": {
+        "name": "Cursed Yellow Spellbook",
+        "image": "https://i.imgur.com/DReSBy7.png"
+    },
+    "AbsoLab Knight Gloves": {
+        "name": "AbsoLab Knight Gloves",
+        "image": "https://i.imgur.com/iF3wpk6.png"
+    },
+    "AbsoLab Mage Gloves": {
+        "name": "AbsoLab Mage Gloves",
+        "image": "https://i.imgur.com/iF3wpk6.png"
+    },
+    "AbsoLab Archer Gloves": {
+        "name": "AbsoLab Archer Gloves",
+        "image": "https://i.imgur.com/iF3wpk6.png"
+    },
+    "AbsoLab Bandit Gloves": {
+        "name": "AbsoLab Bandit Gloves",
+        "image": "https://i.imgur.com/iF3wpk6.png"
+    },
+    "AbsoLab Pirate Gloves": {
+        "name": "AbsoLab Pirate Gloves",
+        "image": "https://i.imgur.com/iF3wpk6.png"
+    },
+    "AbsoLab Knight Shoes": {
+        "name": "AbsoLab Knight Shoes",
+        "image": "https://i.imgur.com/8jp3lQt.png"
+    },
+    "AbsoLab Mage Shoes": {
+        "name": "AbsoLab Mage Shoes",
+        "image": "https://i.imgur.com/8jp3lQt.png"
+    },
+    "AbsoLab Archer Shoes": {
+        "name": "AbsoLab Archer Shoes",
+        "image": "https://i.imgur.com/8jp3lQt.png"
+    },
+    "AbsoLab Bandit Shoes": {
+        "name": "AbsoLab Bandit Shoes",
+        "image": "https://i.imgur.com/8jp3lQt.png"
+    },
+    "AbsoLab Pirate Shoes": {
+        "name": "AbsoLab Pirate Shoes",
+        "image": "https://i.imgur.com/8jp3lQt.png"
+    },
+    "AbsoLab Knight Cape": {
+        "name": "AbsoLab Knight Cape",
+        "image": "https://i.imgur.com/7gB3vb5.png"
+    },
+    "AbsoLab Mage Cape": {
+        "name": "AbsoLab Mage Cape",
+        "image": "https://i.imgur.com/7gB3vb5.png"
+    },
+    "AbsoLab Archer Cape": {
+        "name": "AbsoLab Archer Cape",
+        "image": "https://i.imgur.com/7gB3vb5.png"
+    },
+    "AbsoLab Bandit Cape": {
+        "name": "AbsoLab Bandit Cape",
+        "image": "https://i.imgur.com/7gB3vb5.png"
+    },
+    "AbsoLab Pirate Cape": {
+        "name": "AbsoLab Pirate Cape",
+        "image": "https://i.imgur.com/7gB3vb5.png"
+    },
+    "AbsoLab Knight Helm": {
+        "name": "AbsoLab Knight Helm",
+        "image": "https://i.imgur.com/M2WGyaG.png"
+    },
+    "AbsoLab Mage Crown": {
+        "name": "AbsoLab Mage Crown",
+        "image": "https://i.imgur.com/clc3peG.png"
+    },
+    "AbsoLab Archer Hood": {
+        "name": "AbsoLab Archer Hood",
+        "image": "https://i.imgur.com/MK6FoQx.png"
+    },
+    "AbsoLab Bandit Cap": {
+        "name": "AbsoLab Bandit Cap",
+        "image": "https://i.imgur.com/ZlfLmy6.png"
+    },
+    "AbsoLab Pirate Fedora": {
+        "name": "AbsoLab Pirate Fedora",
+        "image": "https://i.imgur.com/Dg6bc7Y.png"
+    },
+    "AbsoLab Knight Suit": {
+        "name": "AbsoLab Knight Suit",
+        "image": "https://i.imgur.com/vmKq2sB.png"
+    },
+    "AbsoLab Mage Suit": {
+        "name": "AbsoLab Mage Suit",
+        "image": "https://i.imgur.com/xV39spT.png"
+    },
+    "AbsoLab Archer Suit": {
+        "name": "AbsoLab Archer Suit",
+        "image": "https://i.imgur.com/JSyBz2t.png"
+    },
+    "AbsoLab Bandit Suit": {
+        "name": "AbsoLab Bandit Suit",
+        "image": "https://i.imgur.com/eWUaozl.png"
+    },
+    "AbsoLab Pirate Suit": {
+        "name": "AbsoLab Pirate Suit",
+        "image": "https://i.imgur.com/35jEq1L.png"
+    },
+    "AbsoLab Knight Shoulder": {
+        "name": "AbsoLab Knight Shoulder",
+        "image": "https://i.imgur.com/Ncxzz0F.png"
+    },
+    "AbsoLab Mage Shoulder": {
+        "name": "AbsoLab Mage Shoulder",
+        "image": "https://i.imgur.com/Ncxzz0F.png"
+    },
+    "AbsoLab Archer Shoulder": {
+        "name": "AbsoLab Archer Shoulder",
+        "image": "https://i.imgur.com/Ncxzz0F.png"
+    },
+    "AbsoLab Thief Shoulder": {
+        "name": "AbsoLab Thief Shoulder",
+        "image": "https://i.imgur.com/Ncxzz0F.png"
+    },
+    "AbsoLab Pirate Shoulder": {
+        "name": "AbsoLab Pirate Shoulder",
+        "image": "https://i.imgur.com/Ncxzz0F.png"
+    },
+    "AbsoLab Shining Rod": {
+        "name": "AbsoLab Shining Rod",
+        "image": "https://i.imgur.com/kr2No5e.png"
+    },
+    "AbsoLab Soul Shooter": {
+        "name": "AbsoLab Soul Shooter",
+        "image": "https://i.imgur.com/ew4kDgB.png"
+    },
+    "AbsoLab Desperado": {
+        "name": "AbsoLab Desperado",
+        "image": "https://i.imgur.com/9dNH864.png"
+    },
+    "AbsoLab Whip Blade": {
+        "name": "AbsoLab Whip Blade",
+        "image": "https://i.imgur.com/d7AooAa.png"
+    },
+    "AbsoLab Saber": {
+        "name": "AbsoLab Saber",
+        "image": "https://i.imgur.com/2nGNbeE.png"
+    },
+    "AbsoLab Axe": {
+        "name": "AbsoLab Axe",
+        "image": "https://i.imgur.com/fcSDt3l.png"
+    },
+    "AbsoLab Bit Hammer": {
+        "name": "AbsoLab Bit Hammer",
+        "image": "https://i.imgur.com/nFjoZ5a.png"
+    },
+    "AbsoLab Blade Lord": {
+        "name": "AbsoLab Blade Lord",
+        "image": "https://i.imgur.com/U9g9Hms.png"
+    },
+    "AbsoLab Katara": {
+        "name": "AbsoLab Katara",
+        "image": "https://i.imgur.com/5ZmRgW4.png"
+    },
+    "AbsoLab Forked Cane": {
+        "name": "AbsoLab Forked Cane",
+        "image": "https://i.imgur.com/IF8hggy.png"
+    },
+    "AbsoLab Spellsong Wand": {
+        "name": "AbsoLab Spellsong Wand",
+        "image": "https://i.imgur.com/xdsXr8D.png"
+    },
+    "AbsoLab Spellsong Staff": {
+        "name": "AbsoLab Spellsong Staff",
+        "image": "https://i.imgur.com/Mytiyao.png"
+    },
+    "AbsoLab Psy-limiter": {
+        "name": "AbsoLab Psy-limiter",
+        "image": "https://i.imgur.com/w23bZO0.png"
+    },
+    "AbsoLab Chain": {
+        "name": "AbsoLab Chain",
+        "image": "https://i.imgur.com/PLEJOrZ.png"
+    },
+    "AbsoLab Lucent Gauntlet": {
+        "name": "AbsoLab Lucent Gauntlet",
+        "image": "https://i.imgur.com/97KFKef.png"
+    },
+    "AbsoLab Monster Ritual Fan": {
+        "name": "AbsoLab Monster Ritual Fan",
+        "image": "https://i.imgur.com/DtF0EHh.png"
+    },
+    "AbsoLab Bladecaster": {
+        "name": "AbsoLab Bladecaster",
+        "image": "https://i.imgur.com/JdTkFNB.png"
+    },
+    "AbsoLab Pile God": {
+        "name": "AbsoLab Pile God",
+        "image": "https://i.imgur.com/ifTZz4V.png"
+    },
+    "AbsoLab Broad Saber": {
+        "name": "AbsoLab Broad Saber",
+        "image": "https://i.imgur.com/ttUtsNd.png"
+    },
+    "AbsoLab Broad Axe": {
+        "name": "AbsoLab Broad Axe",
+        "image": "https://i.imgur.com/0uPpwCy.png"
+    },
+    "AbsoLab Broad Hammer": {
+        "name": "AbsoLab Broad Hammer",
+        "image": "https://i.imgur.com/2xWqEzu.png"
+    },
+    "AbsoLab Piercing Spear": {
+        "name": "AbsoLab Piercing Spear",
+        "image": "https://i.imgur.com/yxTaRPQ.png"
+    },
+    "AbsoLab Hellslayer": {
+        "name": "AbsoLab Hellslayer",
+        "image": "https://i.imgur.com/fmZUCNH.png"
+    },
+    "AbsoLab Sureshot Bow": {
+        "name": "AbsoLab Sureshot Bow",
+        "image": "https://i.imgur.com/IReXG3A.png"
+    },
+    "AbsoLab Crossbow": {
+        "name": "AbsoLab Crossbow",
+        "image": "https://i.imgur.com/iboRjxK.png"
+    },
+    "AbsoLab Revenge Guard": {
+        "name": "AbsoLab Revenge Guard",
+        "image": "https://i.imgur.com/UHbrLRN.png"
+    },
+    "AbsoLab Blast Knuckle": {
+        "name": "AbsoLab Blast Knuckle",
+        "image": "https://i.imgur.com/22uvpow.png"
+    },
+    "AbsoLab Point Gun": {
+        "name": "AbsoLab Point Gun",
+        "image": "https://i.imgur.com/sTeehn1.png"
+    },
+    "AbsoLab Dual Bowguns": {
+        "name": "AbsoLab Dual Bowguns",
+        "image": "https://i.imgur.com/5mxMyr1.png"
+    },
+    "AbsoLab Ancient Bow": {
+        "name": "AbsoLab Ancient Bow",
+        "image": "https://i.imgur.com/U27lszf.png"
+    },
+    "AbsoLab Blast Cannon": {
+        "name": "AbsoLab Blast Cannon",
+        "image": "https://i.imgur.com/ahgj9Ln.png"
+    },
+    "AbsoLab Katana": {
+        "name": "AbsoLab Katana",
+        "image": "https://i.imgur.com/WAOSh3r.png"
+    },
+    "AbsoLab Summoner": {
+        "name": "AbsoLab Summoner",
+        "image": "https://i.imgur.com/teDDjNu.png"
+    },
+    "AbsoLab Scepter": {
+        "name": "AbsoLab Scepter",
+        "image": "https://i.imgur.com/Qgi18CH.png"
+    },
+    "AbsoLab Essence": {
+        "name": "AbsoLab Essence",
+        "image": "https://i.imgur.com/2ppG0qM.png"
+    },
+    "Arcane Umbra Knight Hat": {
+        "name": "Arcane Umbra Knight Hat",
+        "image": "https://i.imgur.com/59Kfs62.png"
+    },
+    "Arcane Umbra Knight Suit": {
+        "name": "Arcane Umbra Knight Suit",
+        "image": "https://i.imgur.com/isljcjh.png"
+    },
+    "Arcane Umbra Knight Gloves": {
+        "name": "Arcane Umbra Knight Gloves",
+        "image": "https://i.imgur.com/mrrswkx.png"
+    },
+    "Arcane Umbra Knight Shoulder": {
+        "name": "Arcane Umbra Knight Shoulder",
+        "image": "https://i.imgur.com/kSrhkhv.png"
+    },
+    "Arcane Umbra Knight Cape": {
+        "name": "Arcane Umbra Knight Cape",
+        "image": "https://i.imgur.com/X1ng1sC.png"
+    },
+    "Arcane Umbra Knight Shoes": {
+        "name": "Arcane Umbra Knight Shoes",
+        "image": "https://i.imgur.com/RH8sgkm.png"
+    },
+    "Arcane Umbra Mage Hat": {
+        "name": "Arcane Umbra Mage Hat",
+        "image": "https://i.imgur.com/5Ebg4wQ.png"
+    },
+    "Arcane Umbra Mage Suit": {
+        "name": "Arcane Umbra Mage Suit",
+        "image": "https://i.imgur.com/5bJtGCY.png"
+    },
+    "Arcane Umbra Mage Gloves": {
+        "name": "Arcane Umbra Mage Gloves",
+        "image": "https://i.imgur.com/mrrswkx.png"
+    },
+    "Arcane Umbra Mage Shoulder": {
+        "name": "Arcane Umbra Mage Shoulder",
+        "image": "https://i.imgur.com/kSrhkhv.png"
+    },
+    "Arcane Umbra Mage Cape": {
+        "name": "Arcane Umbra Mage Cape",
+        "image": "https://i.imgur.com/X1ng1sC.png"
+    },
+    "Arcane Umbra Mage Shoes": {
+        "name": "Arcane Umbra Mage Shoes",
+        "image": "https://i.imgur.com/RH8sgkm.png"
+    },
+    "Arcane Umbra Archer Hat": {
+        "name": "Arcane Umbra Archer Hat",
+        "image": "https://i.imgur.com/m2kGRxt.png"
+    },
+    "Arcane Umbra Archer Suit": {
+        "name": "Arcane Umbra Archer Suit",
+        "image": "https://i.imgur.com/7kRkfVc.png"
+    },
+    "Arcane Umbra Archer Gloves": {
+        "name": "Arcane Umbra Archer Gloves",
+        "image": "https://i.imgur.com/mrrswkx.png"
+    },
+    "Arcane Umbra Archer Shoulder": {
+        "name": "Arcane Umbra Archer Shoulder",
+        "image": "https://i.imgur.com/kSrhkhv.png"
+    },
+    "Arcane Umbra Archer Cape": {
+        "name": "Arcane Umbra Archer Cape",
+        "image": "https://i.imgur.com/X1ng1sC.png"
+    },
+    "Arcane Umbra Archer Shoes": {
+        "name": "Arcane Umbra Archer Shoes",
+        "image": "https://i.imgur.com/RH8sgkm.png"
+    },
+    "Arcane Umbra Thief Hat": {
+        "name": "Arcane Umbra Thief Hat",
+        "image": "https://i.imgur.com/dVfLbJX.png"
+    },
+    "Arcane Umbra Thief Suit": {
+        "name": "Arcane Umbra Thief Suit",
+        "image": "https://i.imgur.com/Mo8uYp1.png"
+    },
+    "Arcane Umbra Thief Gloves": {
+        "name": "Arcane Umbra Thief Gloves",
+        "image": "https://i.imgur.com/mrrswkx.png"
+    },
+    "Arcane Umbra Thief Shoulder": {
+        "name": "Arcane Umbra Thief Shoulder",
+        "image": "https://i.imgur.com/kSrhkhv.png"
+    },
+    "Arcane Umbra Thief Cape": {
+        "name": "Arcane Umbra Thief Cape",
+        "image": "https://i.imgur.com/X1ng1sC.png"
+    },
+    "Arcane Umbra Thief Shoes": {
+        "name": "Arcane Umbra Thief Shoes",
+        "image": "https://i.imgur.com/RH8sgkm.png"
+    },
+    "Arcane Umbra Pirate Hat": {
+        "name": "Arcane Umbra Pirate Hat",
+        "image": "https://i.imgur.com/bYTXotS.png"
+    },
+    "Arcane Umbra Pirate Suit": {
+        "name": "Arcane Umbra Pirate Suit",
+        "image": "https://i.imgur.com/DFgOa7n.png"
+    },
+    "Arcane Umbra Pirate Gloves": {
+        "name": "Arcane Umbra Pirate Gloves",
+        "image": "https://i.imgur.com/mrrswkx.png"
+    },
+    "Arcane Umbra Pirate Shoulder": {
+        "name": "Arcane Umbra Pirate Shoulder",
+        "image": "https://i.imgur.com/kSrhkhv.png"
+    },
+    "Arcane Umbra Pirate Cape": {
+        "name": "Arcane Umbra Pirate Cape",
+        "image": "https://i.imgur.com/X1ng1sC.png"
+    },
+    "Arcane Umbra Shining Rod": {
+        "name": "Arcane Umbra Shining Rod",
+        "image": "https://i.imgur.com/l5iZ5d0.png"
+    },
+    "Arcane Umbra Soul Shooter": {
+        "name": "Arcane Umbra Soul Shooter",
+        "image": "https://i.imgur.com/BhVxr7Q.png"
+    },
+    "Arcane Umbra Desperado": {
+        "name": "Arcane Umbra Desperado",
+        "image": "https://i.imgur.com/J0Pn98d.png"
+    },
+    "Arcane Umbra Energy Chain": {
+        "name": "Arcane Umbra Energy Chain",
+        "image": "https://i.imgur.com/cDRgFbu.png"
+    },
+    "Arcane Umbra Psy-limiter": {
+        "name": "Arcane Umbra Psy-limiter",
+        "image": "https://i.imgur.com/M8HDQEt.png"
+    },
+    "Arcane Umbra Chain": {
+        "name": "Arcane Umbra Chain",
+        "image": "https://i.imgur.com/ZLDxfpA.png"
+    },
+    "Arcane Umbra Lucent Gauntlet": {
+        "name": "Arcane Umbra Lucent Gauntlet",
+        "image": "https://i.imgur.com/FWpp08Y.png"
+    },
+    "Arcane Umbra Super Ritual Fan": {
+        "name": "Arcane Umbra Super Ritual Fan",
+        "image": "https://i.imgur.com/zlJ30qQ.png"
+    },
+    "Arcane Umbra Bladecaster": {
+        "name": "Arcane Umbra Bladecaster",
+        "image": "https://i.imgur.com/tgxmDQ5.png"
+    },
+    "Arcane Umbra Saber": {
+        "name": "Arcane Umbra Saber",
+        "image": "https://i.imgur.com/orgXi2L.png"
+    },
+    "Arcane Umbra Axe": {
+        "name": "Arcane Umbra Axe",
+        "image": "https://i.imgur.com/C0MbZwC.png"
+    },
+    "Arcane Umbra Hammer": {
+        "name": "Arcane Umbra Hammer",
+        "image": "https://i.imgur.com/EbKb9zw.png"
+    },
+    "Arcane Umbra Dagger": {
+        "name": "Arcane Umbra Dagger",
+        "image": "https://i.imgur.com/JVB6l2L.png"
+    },
+    "Arcane Umbra Katara": {
+        "name": "Arcane Umbra Katara",
+        "image": "https://i.imgur.com/wcFeBee.png"
+    },
+    "Arcane Umbra Cane": {
+        "name": "Arcane Umbra Cane",
+        "image": "https://i.imgur.com/Q7CsZFs.png"
+    },
+    "Arcane Umbra Wand": {
+        "name": "Arcane Umbra Wand",
+        "image": "https://i.imgur.com/iY4HJ14.png"
+    },
+    "Arcane Umbra Staff": {
+        "name": "Arcane Umbra Staff",
+        "image": "https://i.imgur.com/E10Lyxj.png"
+    },
+    "Arcane Umbra Two-handed Sword": {
+        "name": "Arcane Umbra Two-handed Sword",
+        "image": "https://i.imgur.com/uJXhnl3.png"
+    },
+    "Arcane Umbra Two-Handed Axe": {
+        "name": "Arcane Umbra Two-Handed Axe",
+        "image": "https://i.imgur.com/j37QWt3.png"
+    },
+    "Arcane Umbra Two-Handed Hammer": {
+        "name": "Arcane Umbra Two-Handed Hammer",
+        "image": "https://i.imgur.com/Lr7kmlH.png"
+    },
+    "Arcane Umbra Spear": {
+        "name": "Arcane Umbra Spear",
+        "image": "https://i.imgur.com/Oy2sjNS.png"
+    },
+    "Arcane Umbra Polearm": {
+        "name": "Arcane Umbra Polearm",
+        "image": "https://i.imgur.com/ODtypWx.png"
+    },
+    "Arcane Umbra Bow": {
+        "name": "Arcane Umbra Bow",
+        "image": "https://i.imgur.com/gPn83IT.png"
+    },
+    "Arcane Umbra Crossbow": {
+        "name": "Arcane Umbra Crossbow",
+        "image": "https://i.imgur.com/aStm1TT.png"
+    },
+    "Arcane Umbra Ancient Bow": {
+        "name": "Arcane Umbra Ancient Bow",
+        "image": "https://i.imgur.com/M3Ws7kd.png"
+    },
+    "Arcane Umbra Guards": {
+        "name": "Arcane Umbra Guards",
+        "image": "https://i.imgur.com/FKVGbSW.png"
+    },
+    "Arcane Umbra Knuckle": {
+        "name": "Arcane Umbra Knuckle",
+        "image": "https://i.imgur.com/pFGktOS.png"
+    },
+    "Arcane Umbra Pistol": {
+        "name": "Arcane Umbra Pistol",
+        "image": "https://i.imgur.com/bsttE7u.png"
+    },
+    "Arcane Umbra Dual Bowguns": {
+        "name": "Arcane Umbra Dual Bowguns",
+        "image": "https://i.imgur.com/gffywH1.png"
+    },
+    "Arcane Umbra Siege Gun": {
+        "name": "Arcane Umbra Siege Gun",
+        "image": "https://i.imgur.com/I8I6tzU.png"
+    },
+    "Arcane Umbra Ellaha": {
+        "name": "Arcane Umbra Ellaha",
+        "image": "https://i.imgur.com/zViUZdJ.png"
+    },
+    "Arcane Umbra Katana": {
+        "name": "Arcane Umbra Katana",
+        "image": "https://i.imgur.com/P5S6bi0.png"
+    },
+    "Arcane Umbra Fan": {
+        "name": "Arcane Umbra Fan",
+        "image": "https://i.imgur.com/Cfztm7L.png"
+    },
+    "Arcane Umbra Scepter": {
+        "name": "Arcane Umbra Scepter",
+        "image": "https://i.imgur.com/VJUKW3O.png"
+    },
+    "Arcane Umbra Essence": {
+        "name": "Arcane Umbra Essence",
+        "image": "https://i.imgur.com/lI00lO3.png"
+    }
+}
