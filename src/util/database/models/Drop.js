@@ -20,7 +20,7 @@ module.exports = (mongoose) => {
         return this.price - Math.floor(this.price * 0.05);
     });
     dropSchema.virtual('split').get(function() {
-        return Math.round(this.taxed / this.party.length);
+        return Math.round(this.taxed / this.partySize);
     });
 
     dropSchema.plugin(require('mongoose-autopopulate'));

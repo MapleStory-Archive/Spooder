@@ -147,7 +147,7 @@ module.exports = {
             .setAuthor(`Drop #${Guild.dropCounter + 1}`, boss.image)
             .setThumbnail(item.image)
             .setTitle(`Boss: ${boss.name}\nItem: ${item.name}`);
-        const embed2 = new MessageEmbed()
+        const confirmEmbed = new MessageEmbed()
             .setDescription('You have `60 seconds` to upload, confirm, or cancel.\n\nClick the ✅ button to confirm the above information is correct.\nClick the 📸 button to upload an optional image of the drop.\n Click the ❌ button to cancel this action.');
         const row = new MessageActionRow()
             .addComponents([
@@ -178,7 +178,7 @@ module.exports = {
 
             if (members.length > 6) return interaction.reply({ embeds: [{ description: `**Something is wrong**.\n${role} has over 6 members (${partySize}).\nPlease edit or recreate the party.`, color: 'YELLOW' }] });
 
-            embed.addField('**Party:**', `${role} (size: ${partySize})\n${members.sort((first, second) => first.id - second.id).join(', ')}`);
+            embed.addField(`Party: (size: ${partySize})`, `${members.sort((first, second) => first.id - second.id).join(', ')}`);
         }
         else {
             const randoms = options.getInteger('randoms');
@@ -197,10 +197,10 @@ module.exports = {
             if (partySize > 6) return interaction.reply({ embeds: [{ description: `**Something is wrong**.\nYou included over has over 6 members, \`${members.length} users\` and \`${randoms} randoms\`.\nPlease recreate the party.`, color: 'YELLOW' }] });
             if ((new Set(members)).size !== members.length) return interaction.reply({ embeds: [{ description: '**Something is wrong**.\nYou have entered a member more than once.\nPlease recreate the party.', color: 'YELLOW' }] });
 
-            embed.addField('**Party:**', `(size: ${partySize})\n${members.sort((first, second) => first.id - second.id).join(', ')}${randoms ? `, + ${randoms} randoms` : ''}`);
+            embed.addField(`Party: (size: ${partySize})`, `${members.sort((first, second) => first.id - second.id).join(', ')}${randoms ? `, + ${randoms} randoms` : ''}`);
         }
 
-        const reply = await interaction.reply({ embeds: [embed, embed2], components: [row], fetchReply: true });
+        const reply = await interaction.reply({ embeds: [embed, confirmEmbed], components: [row], fetchReply: true });
 
         const buttonFilter = i => i.user.id === interaction.user.id && ['confirm', 'image', 'cancel'].includes(i.customId);
         const buttonCollector = reply.createMessageComponentCollector({ filter: buttonFilter, time: 60000 });
@@ -253,14 +253,14 @@ module.exports = {
                 return interaction.editReply({ embeds: [embed, { description: `Sucessfully created a new [drop](${dropMessage.url}).`, color: 'GREEN' }], components: [] });
             }
             else if (button === 'image') {
-                const msg = await channel.send({ embeds: [{ description: 'Please upload the image now.\nIt can be either an image file or a image link ending in `.png`, `.jpg`, or `.jpeg`' }] });
                 const row = new MessageActionRow()
                     .addComponents([
                         new MessageButton()
                             .setCustomId('confirm')
                             .setLabel('Confirm')
                             .setEmoji('✅')
-                            .setStyle('SUCCESS'),
+                            .setStyle('SUCCESS')
+                            .setDisabled(true),
                         new MessageButton()
                             .setCustomId('image')
                             .setLabel('Upload Image')
@@ -274,15 +274,39 @@ module.exports = {
                             .setStyle('DANGER'),
                     ]);
 
+                interaction.editReply({ embeds: [embed, confirmEmbed], components: [row] });
+
+                const msg = await channel.send({ embeds: [{ description: 'Please upload the image now.\nIt can be either an image file or a image link ending in `.png`, `.jpg`, or `.jpeg`' }] });
+
                 msgCollector.on('collect', m => {
                     m.delete();
-                    embed.setImage('attachment://screenshot.png');
+                    const row = new MessageActionRow()
+                        .addComponents([
+                            new MessageButton()
+                                .setCustomId('confirm')
+                                .setLabel('Confirm')
+                                .setEmoji('✅')
+                                .setStyle('SUCCESS'),
+                            new MessageButton()
+                                .setCustomId('image')
+                                .setLabel('Upload Image')
+                                .setEmoji('📸')
+                                .setStyle('PRIMARY')
+                                .setDisabled(true),
+                            new MessageButton()
+                                .setCustomId('cancel')
+                                .setLabel('Cancel')
+                                .setEmoji('❌')
+                                .setStyle('DANGER'),
+                        ]);
 
                     if (m.attachments.size) {
-                        interaction.editReply({ embeds: [embed, embed2], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
+                        embed.setImage('attachment://screenshot.png');
+                        interaction.editReply({ embeds: [embed, confirmEmbed], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
                     }
                     else if (m.content.endsWith('.png') || m.content.endsWith('.jpg') || m.content.endsWith('.jpeg')) {
-                        interaction.editReply({ embeds: [embed, embed2], components: [row], files: [{ attachment: m.content, name: 'screenshot.png' }] });
+                        embed.setImage(m.content);
+                        interaction.editReply({ embeds: [embed, confirmEmbed], components: [row] });
                     }
                     else return;
                 });

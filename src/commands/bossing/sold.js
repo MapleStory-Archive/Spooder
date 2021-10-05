@@ -99,22 +99,28 @@ module.exports = {
                 buttonCollector.stop();
 
                 const saleMessage = await salesChannel.send({ content: partyMembers.sort().join(', '), embeds: [saleEmbed], files: [{ attachment: image, name: 'screenshot.png' }] });
+
                 dropEmbed.setImage('attachment://screenshot.png')
                     .setDescription(`Sales Receipt: [Here](${saleMessage.url} 'View Sales Receipt')`)
                     .setFooter(`Sold for: ${price.toLocaleString()}`);
                 dropMsg.edit({ embeds: [dropEmbed] });
+                await dropMsg.react('🇸');
+                await dropMsg.react('🇴');
+                await dropMsg.react('🇱');
+                await dropMsg.react('🇩');
+
                 await Drop.updateOne({ saleMessageId: saleMessage.id, price, sold: true });
                 return interaction.editReply({ embeds: [saleEmbed, { description: `[Drop #${Drop.number}](${dropMsg.url} 'View Drop') has been sucessfully marked as [sold](${saleMessage.url} 'View Sales Receipt').`, color: 'GREEN' }], components: [] });
             }
             else if (button === 'image') {
-                const msg = await channel.send({ embeds: [{ description: 'Please upload the image now.\nIt can be either an image file or a image link ending in `.png`, `.jpg`, or `.jpeg`' }] });
                 const row = new MessageActionRow()
                     .addComponents([
                         new MessageButton()
                             .setCustomId('confirm')
                             .setLabel('Confirm')
                             .setEmoji('✅')
-                            .setStyle('SUCCESS'),
+                            .setStyle('SUCCESS')
+                            .setDisabled(true),
                         new MessageButton()
                             .setCustomId('image')
                             .setLabel('Upload Image')
@@ -127,16 +133,39 @@ module.exports = {
                             .setEmoji('❌')
                             .setStyle('DANGER'),
                     ]);
+                interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row] });
+
+                const msg = await channel.send({ embeds: [{ description: 'Please upload the image now.\nIt can be either an image file or a image link ending in `.png`, `.jpg`, or `.jpeg`' }] });
 
                 msgCollector.on('collect', m => {
                     m.delete();
-                    saleEmbed.setImage('attachment://screenshot.png');
+                    const row = new MessageActionRow()
+                        .addComponents([
+                            new MessageButton()
+                                .setCustomId('confirm')
+                                .setLabel('Confirm')
+                                .setEmoji('✅')
+                                .setStyle('SUCCESS'),
+                            new MessageButton()
+                                .setCustomId('image')
+                                .setLabel('Upload Image')
+                                .setEmoji('📸')
+                                .setStyle('PRIMARY')
+                                .setDisabled(true),
+                            new MessageButton()
+                                .setCustomId('cancel')
+                                .setLabel('Cancel')
+                                .setEmoji('❌')
+                                .setStyle('DANGER'),
+                        ]);
 
                     if (m.attachments.size) {
+                        saleEmbed.setImage('attachment://screenshot.png');
                         interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
                     }
                     else if (m.content.endsWith('.png') || m.content.endsWith('.jpg') || m.content.endsWith('.jpeg')) {
-                        interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row], files: [{ attachment: m.content, name: 'screenshot.png' }] });
+                        saleEmbed.setImage(m.content);
+                        interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row] });
                     }
                     else return;
                 });
