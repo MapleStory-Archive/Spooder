@@ -7,7 +7,7 @@ module.exports = (mongoose) => {
         boss: String,
         item: String,
         partySize: Number,
-        party: [{ type: mongoose.ObjectId, ref: 'Member' }],
+        party: [{ type: mongoose.ObjectId, ref: 'Member', autopopulate: true }],
         price: Number,
         sold: Boolean,
     }, {
@@ -15,6 +15,15 @@ module.exports = (mongoose) => {
     });
 
     dropSchema.index({ guildId: 1, number: 1 }, { unique: true });
+
+    dropSchema.virtual('taxed').get(function() {
+        return this.price - Math.floor(this.price * 0.05);
+    });
+    dropSchema.virtual('split').get(function() {
+        return Math.round(this.taxed / this.party.length);
+    });
+
+    dropSchema.plugin(require('mongoose-autopopulate'));
 
     return mongoose.model('Drop', dropSchema);
 };

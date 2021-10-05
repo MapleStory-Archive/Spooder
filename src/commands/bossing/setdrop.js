@@ -178,7 +178,7 @@ module.exports = {
 
             if (members.length > 6) return interaction.reply({ embeds: [{ description: `**Something is wrong**.\n${role} has over 6 members (${partySize}).\nPlease edit or recreate the party.`, color: 'YELLOW' }] });
 
-            embed.setDescription(`**Party:** ${role} (size: ${partySize})\n${members.sort((first, second) => first.id - second.id).join(', ')}`);
+            embed.addField('**Party:**', `${role} (size: ${partySize})\n${members.sort((first, second) => first.id - second.id).join(', ')}`);
         }
         else {
             const randoms = options.getInteger('randoms');
@@ -197,7 +197,7 @@ module.exports = {
             if (partySize > 6) return interaction.reply({ embeds: [{ description: `**Something is wrong**.\nYou included over has over 6 members, \`${members.length} users\` and \`${randoms} randoms\`.\nPlease recreate the party.`, color: 'YELLOW' }] });
             if ((new Set(members)).size !== members.length) return interaction.reply({ embeds: [{ description: '**Something is wrong**.\nYou have entered a member more than once.\nPlease recreate the party.', color: 'YELLOW' }] });
 
-            embed.setDescription(`**Party:** (size: ${partySize})\n${members.sort((first, second) => first.id - second.id).join(', ')}${randoms ? `, + ${randoms} randoms` : ''}`);
+            embed.addField('**Party:**', `(size: ${partySize})\n${members.sort((first, second) => first.id - second.id).join(', ')}${randoms ? `, + ${randoms} randoms` : ''}`);
         }
 
         const reply = await interaction.reply({ embeds: [embed, embed2], components: [row], fetchReply: true });
