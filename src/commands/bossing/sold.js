@@ -86,8 +86,9 @@ module.exports = {
             if (button === 'confirm') {
                 const partyMembers = [];
 
-                Drop.party.forEach(member => {
+                Drop.party.forEach(async member => {
                     partyMembers.push(`<@!${member.userId}>`);
+                    await member.updateOne({ $push: { paychecks: Drop } });
                 });
 
                 const image = await interaction.fetchReply().then(reply => {
