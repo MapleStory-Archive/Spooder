@@ -212,6 +212,8 @@ module.exports = {
             const button = i.customId;
 
             if (button === 'confirm') {
+                buttonCollector.stop();
+
                 const drop = {
                     guildId: guild.id,
                     number: Guild.dropCounter + 1,
@@ -241,14 +243,12 @@ module.exports = {
                 }
 
                 const image = await interaction.fetchReply().then(reply => {
-                    return reply.embeds[0].image.url;
+                    return reply.embeds[0].image ? reply.embeds[0].image.url : null;
                 });
 
-                embed.setImage('attachment://screenshot.png');
-                msgCollector.stop();
-                buttonCollector.stop();
+                if (image) embed.setImage('attachment://screenshot.png');
 
-                const dropMessage = await dropsChannel.send({ embeds: [embed], files: [{ attachment: image, name: 'screenshot.png' }] });
+                const dropMessage = image ? await dropsChannel.send({ embeds: [embed], files: [{ attachment: image, name: 'screenshot.png' }] }) : await dropsChannel.send({ embeds: [embed] });
                 await Drop.updateOne({ dropMessageId: dropMessage.id, $push: { party: Members } });
                 return interaction.editReply({ embeds: [embed, { description: `Sucessfully created a new [drop](${dropMessage.url}).`, color: 'GREEN' }], components: [] });
             }

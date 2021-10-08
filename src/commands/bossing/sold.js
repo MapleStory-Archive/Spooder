@@ -84,6 +84,8 @@ module.exports = {
             const button = i.customId;
 
             if (button === 'confirm') {
+                buttonCollector.stop();
+
                 const partyMembers = [];
 
                 Drop.party.forEach(async member => {
@@ -92,23 +94,18 @@ module.exports = {
                 });
 
                 const image = await interaction.fetchReply().then(reply => {
-                    return reply.embeds[0].image.url;
+                    return reply.embeds[0].image ? reply.embeds[0].image.url : null;
                 });
 
-                saleEmbed.setImage('attachment://screenshot.png');
-                msgCollector.stop();
-                buttonCollector.stop();
+                if (image) saleEmbed.setImage('attachment://screenshot.png');
 
-                const saleMessage = await salesChannel.send({ content: partyMembers.sort().join(', '), embeds: [saleEmbed], files: [{ attachment: image, name: 'screenshot.png' }] });
+                const saleMessage = image ? await salesChannel.send({ content: partyMembers.sort().join(', '), embeds: [saleEmbed], files: [{ attachment: image, name: 'screenshot.png' }] }) : await salesChannel.send({ content: partyMembers.sort().join(', '), embeds: [saleEmbed] });
 
                 dropEmbed.setImage('attachment://screenshot.png')
                     .setDescription(`Sales Receipt: [Here](${saleMessage.url} 'View Sales Receipt')`)
                     .setFooter(`Sold for: ${price.toLocaleString()}`);
                 dropMsg.edit({ embeds: [dropEmbed] });
-                await dropMsg.react('🇸');
-                await dropMsg.react('🇴');
-                await dropMsg.react('🇱');
-                await dropMsg.react('🇩');
+                await dropMsg.react('💰');
 
                 await Drop.updateOne({ saleMessageId: saleMessage.id, price, sold: true });
                 return interaction.editReply({ embeds: [saleEmbed, { description: `[Drop #${Drop.number}](${dropMsg.url} 'View Drop') has been sucessfully marked as [sold](${saleMessage.url} 'View Sales Receipt').`, color: 'GREEN' }], components: [] });
