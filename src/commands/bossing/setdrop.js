@@ -248,7 +248,7 @@ module.exports = {
                 msgCollector.stop();
                 buttonCollector.stop();
 
-                const dropMessage = await dropsChannel.send({ embeds: [embed], files: [image] });
+                const dropMessage = await dropsChannel.send({ embeds: [embed], files: [{ attachment: image, name: 'screenshot.png' }] });
                 await Drop.updateOne({ dropMessageId: dropMessage.id, $push: { party: Members } });
                 return interaction.editReply({ embeds: [embed, { description: `Sucessfully created a new [drop](${dropMessage.url}).`, color: 'GREEN' }], components: [] });
             }
