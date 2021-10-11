@@ -5,7 +5,7 @@ const commandHandler = require('./handlers/commandHandler.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
 client.commands = new Collection();
-client.lobby = new Collection();
+client.commandData = [];
 
 eventHandler(client);
 commandHandler(client);

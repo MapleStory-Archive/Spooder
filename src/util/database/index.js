@@ -2,8 +2,8 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const db = {};
 
-db.init = async () => {
-    await mongoose.connect(process.env.MONGO_URI);
+db.init = () => {
+    mongoose.connect(process.env.MONGO_URI);
     mongoose.Promise = global.Promise;
 
     mongoose.connection.on('connected', () => {

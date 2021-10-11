@@ -1,3 +1,4 @@
+const { Permissions } = require('discord.js');
 const db = require('../../util/database/index.js');
 
 module.exports = {
@@ -26,6 +27,7 @@ module.exports = {
             required: true,
         }],
     },
+    permissions: [Permissions.FLAGS.ADMINISTRATOR],
     async execute(interaction) {
         const Guild = await db.Guild.findOne({ id: interaction.guild.id });
         const type = interaction.options.getString('type');

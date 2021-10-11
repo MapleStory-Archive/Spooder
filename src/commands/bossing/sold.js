@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { MessageActionRow, MessageButton, MessageEmbed, Permissions } = require('discord.js');
 const db = require('../../util/database/index.js');
 const bossList = require('../../util/bossing/bossList.json');
 const itemList = require('../../util/bossing/itemList.json');
@@ -20,6 +20,7 @@ module.exports = {
             required: true,
         }],
     },
+    permissions: [Permissions.FLAGS.ADMINISTRATOR],
     async execute(interaction) {
         const { guild, options, channel } = interaction;
         const Guild = await db.Guild.findOne({ id: guild.id });

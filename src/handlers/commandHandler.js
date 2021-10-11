@@ -12,6 +12,7 @@ module.exports = (client) => {
             else {
                 const command = require(path.join(__dirname, dir, file));
                 client.commands.set(command.data.name, command);
+                client.commandData.push(command.data);
             }
         }
     };

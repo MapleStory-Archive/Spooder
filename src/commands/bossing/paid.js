@@ -1,3 +1,4 @@
+const { Permissions } = require('discord.js');
 const db = require('../../util/database');
 
 module.exports = {
@@ -91,6 +92,7 @@ module.exports = {
             }],
         }],
     },
+    permissions: [Permissions.FLAGS.ADMINISTRATOR],
     async execute(interaction) {
         const { guild, options } = interaction;
         const subcommand = options.getSubcommand();

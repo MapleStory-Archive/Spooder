@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Permissions } = require('discord.js');
 const db = require('../../util/database');
 
 module.exports = {
@@ -95,6 +95,7 @@ module.exports = {
             }],
         }],
     },
+    permissions: [Permissions.FLAGS.ADMINISTRATOR],
     async execute(interaction) {
         const { guild } = interaction;
         const subcommand = interaction.options.getSubcommand();
