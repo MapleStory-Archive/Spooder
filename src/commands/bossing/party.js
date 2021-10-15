@@ -93,6 +93,26 @@ module.exports = {
                 type: 8,
                 required: true,
             }],
+        }, {
+            name: 'link',
+            description: 'Link a pre-existing discord role to a party.',
+            type: 1,
+            options: [{
+                name: 'role',
+                description: 'Input the party role here.',
+                type: 8,
+                required: true,
+            }],
+        }, {
+            name: 'unlink',
+            description: 'Unlink a party role back to a normal discord role.',
+            type: 1,
+            options: [{
+                name: 'role',
+                description: 'Input the party role here.',
+                type: 8,
+                required: true,
+            }],
         }],
     },
     permissions: [Permissions.FLAGS.ADMINISTRATOR],
@@ -153,7 +173,7 @@ module.exports = {
                 return interaction.reply({ embeds: [{ description: `Sucessfully removed ${member} from ${role}.`, color: 'GREEN' }] });
             }
         }
-        else {
+        else if (subcommand === 'get') {
             const role = interaction.options.getRole('role');
             const members = role.members.map(member => member).sort((first, second) => first.id - second.id);
 
@@ -166,6 +186,25 @@ module.exports = {
                 .setFooter(`Size: ${members.length}`);
 
             return interaction.reply({ embeds: [embed] });
+        }
+        else if (subcommand === 'link') {
+            const role = interaction.options.getRole('role');
+            const members = role.members;
+
+            if (role.managed) return interaction.reply({ embeds: [{ description: `${role} is a \`managed\` role. You cannot use that as a party role.`, color: 'RED' }] });
+            if (Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is already a party role.`, color: 'RED' }] });
+            if (members.size > 6) return interaction.reply({ embeds: [{ description: `This role has ${members.size} users. You cannot create a party with over 6 members.`, color: 'RED' }] });
+
+            await Guild.updateOne({ $push: { parties: role.id } });
+            return interaction.reply({ embeds: [{ description: `${role} is now a party with members: ${members.size ? members.map(member => member).sort((first, second) => first.id - second.id).join(', ') : '`none`'}`, color: 'GREEN' }] });
+        }
+        else if (subcommand === 'unlink') {
+            const role = interaction.options.getRole('role');
+
+            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
+
+            await Guild.updateOne({ $pull: { parties: role.id } });
+            return interaction.reply({ embeds: [{ description: `${role} is no longer a party role.`, color: 'GREEN' }] });
         }
     },
 };
