@@ -1,4 +1,4 @@
-const { MessageEmbed, Permissions } = require('discord.js');
+const { Permissions } = require('discord.js');
 const db = require('../../util/database');
 
 module.exports = {
@@ -84,16 +84,6 @@ module.exports = {
                 required: true,
             }],
         }, {
-            name: 'get',
-            description: 'Displays members of a party.',
-            type: 1,
-            options: [{
-                name: 'role',
-                description: 'Input the party role here.',
-                type: 8,
-                required: true,
-            }],
-        }, {
             name: 'link',
             description: 'Link a pre-existing discord role to a party.',
             type: 1,
@@ -172,20 +162,6 @@ module.exports = {
                 member.roles.remove(role);
                 return interaction.reply({ embeds: [{ description: `Sucessfully removed ${member} from ${role}.`, color: 'GREEN' }] });
             }
-        }
-        else if (subcommand === 'get') {
-            const role = interaction.options.getRole('role');
-            const members = role.members.map(member => member).sort((first, second) => first.id - second.id);
-
-            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
-
-            const embed = new MessageEmbed()
-                .setColor(role.color)
-                .setTitle(`Party name: ${role.name}`)
-                .setDescription(`**Members:**\n${members.join(', ')}`)
-                .setFooter(`Size: ${members.length}`);
-
-            return interaction.reply({ embeds: [embed] });
         }
         else if (subcommand === 'link') {
             const role = interaction.options.getRole('role');
