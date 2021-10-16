@@ -4,7 +4,7 @@ const db = require('../../util/database');
 module.exports = {
     data: {
         name: 'party',
-        description: 'Create, delete, edit, or get a party.',
+        description: 'Create, delete, edit, link, or unlink a party.',
         options: [{
             name: 'create',
             description: 'Create a new party role.',

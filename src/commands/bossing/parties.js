@@ -4,14 +4,14 @@ const db = require('../../util/database/index.js');
 module.exports = {
     data: {
         name: 'parties',
-        description: 'View all of the parties in the server.',
+        description: 'Views one or all of the parties in the server.',
         options: [{
             name: 'list',
-            description: 'Shows all of the parties in the server.',
+            description: 'Shows all existing parties.',
             type: 1,
         }, {
             name: 'get',
-            description: 'Displays members of a party.',
+            description: 'Shows one specific party.',
             type: 1,
             options: [{
                 name: 'role',
