@@ -1,4 +1,4 @@
-{   
+{
     "Lotusroid": {
         "name": "Lotusroid",
         "image": "https://i.imgur.com/Gr74gjJ.png"
@@ -46,6 +46,42 @@
     "Cursed Yellow Spellbook": {
         "name": "Cursed Yellow Spellbook",
         "image": "https://i.imgur.com/DReSBy7.png"
+    },
+    "Endless Terror": {
+        "name": "Endless Terror",
+        "image": "https://i.imgur.com/VDWbq7S.png"
+    },
+    "Source of Suffering": {
+        "name": "Source of Suffering",
+        "image": "https://i.imgur.com/TMFRfJ8.png"
+    },
+    "Commanding Force Earring": {
+        "name": "Commanding Force Earring",
+        "image": "https://i.imgur.com/hE3yQMw.png"
+    },
+    "Genesis Badge": {
+        "name": "Genesis Badge",
+        "image": "https://i.imgur.com/LiSMGdk.png"
+    },
+    "Mitra's Rage: Warrior": {
+        "name": "Mitra's Rage: Warrior",
+        "image": "https://i.imgur.com/j32lsPZ.png"
+    },
+    "Mitra's Rage: Magician": {
+        "name": "Mitra's Rage: Magician",
+        "image": "https://i.imgur.com/m168i4F.png"
+    },
+    "Mitra's Rage: Bowman": {
+        "name": "Mitra's Rage: Bowman",
+        "image": "https://i.imgur.com/wjgjrYQ.png"
+    },
+    "Mitra's Rage: Thief": {
+        "name": "Mitra's Rage: Thief",
+        "image": "https://i.imgur.com/iQh1WFt.png"
+    },
+    "Mitra's Rage: Pirate": {
+        "name": "Mitra's Rage: Pirate",
+        "image": "https://i.imgur.com/YFdzDdi.png"
     },
     "AbsoLab Knight Gloves": {
         "name": "AbsoLab Knight Gloves",

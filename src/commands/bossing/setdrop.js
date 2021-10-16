@@ -17,16 +17,31 @@ module.exports = {
                 type: 3,
                 required: true,
                 choices: [{
-                    name: 'Will',
+                    name: 'Chosen Seren',
+                    value: 'chosen seren',
+                }, {
+                    name: 'Black Mage',
+                    value: 'black mage',
+                }, {
+                    name: 'Hard Darknell',
+                    value: 'darknell',
+                }, {
+                    name: 'Verus Hilla',
+                    value: 'verus hilla',
+                }, {
+                    name: 'Chaos Gloom',
+                    value: 'gloom',
+                }, {
+                    name: 'Hard Will',
                     value: 'will',
                 }, {
-                    name: 'Lucid',
+                    name: 'Hard Lucid',
                     value: 'lucid',
                 }, {
-                    name: 'Damien',
+                    name: 'Hard Damien',
                     value: 'damien',
                 }, {
-                    name: 'Lotus',
+                    name: 'Hard Lotus',
                     value: 'lotus',
                 }],
             }, {
@@ -50,16 +65,31 @@ module.exports = {
                 type: 3,
                 required: true,
                 choices: [{
-                    name: 'Will',
+                    name: 'Chosen Seren',
+                    value: 'chosen seren',
+                }, {
+                    name: 'Black Mage',
+                    value: 'black mage',
+                }, {
+                    name: 'Hard Darknell',
+                    value: 'darknell',
+                }, {
+                    name: 'Verus Hilla',
+                    value: 'verus hilla',
+                }, {
+                    name: 'Chaos Gloom',
+                    value: 'gloom',
+                }, {
+                    name: 'Hard Will',
                     value: 'will',
                 }, {
-                    name: 'Lucid',
+                    name: 'Hard Lucid',
                     value: 'lucid',
                 }, {
-                    name: 'Damien',
+                    name: 'Hard Damien',
                     value: 'damien',
                 }, {
-                    name: 'Lotus',
+                    name: 'Hard Lotus',
                     value: 'lotus',
                 }],
             }, {
