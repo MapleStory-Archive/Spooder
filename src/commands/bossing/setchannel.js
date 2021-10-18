@@ -33,6 +33,8 @@ module.exports = {
         const type = interaction.options.getString('type');
         const channel = interaction.options.getChannel('channel');
 
+        if (channel.type !== 'GUILD_TEXT') return interaction.reply({ embeds: [{ description: 'You may only use `Text Channels`.', color: 'RED' }] });
+
         if (type === 'drops') {
             await Guild.updateOne({ $set: { dropsChannelId: channel.id } });
             return interaction.reply({ embeds: [{ description: `The \`drops\` channel has been sucessfully set to ${channel}` }] });
