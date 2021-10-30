@@ -55,12 +55,12 @@ module.exports = {
                             .setStyle('SECONDARY'),
                     ]);
                 const reply = await interaction.reply({ embeds: [embed], components: [row], fetchReply: true });
-                const filter = i => {
-                    i.deferUpdate();
+                const filter = async i => {
+                    await i.deferUpdate();
                     return i.customId === 'previous' || i.customId === 'next';
                 };
                 const collector = reply.createMessageComponentCollector({ filter, componentType: 'BUTTON', idle: 15000, dispose: true });
-                collector.on('collect', i => {
+                collector.on('collect', async i => {
                     if (i.customId === 'next' && index + 1 < maxPages) {
                         index++;
                     }
@@ -73,22 +73,22 @@ module.exports = {
                         .setFooter(`Parties: ${index + 1}/${maxPages}`);
 
 
-                    interaction.editReply({ embeds: [embed], components: [row] });
+                    await interaction.editReply({ embeds: [embed], components: [row] });
                 });
 
-                collector.on('end', () => {
-                    interaction.editReply({ components: [] });
+                collector.on('end', async () => {
+                    await interaction.editReply({ components: [] });
                 });
             }
             else {
-                return interaction.reply({ embeds: [embed] });
+                return await interaction.reply({ embeds: [embed] });
             }
         }
         else if (subcommand === 'get') {
             const role = interaction.options.getRole('role');
             const members = role.members.map(member => member).sort((first, second) => first.id - second.id);
 
-            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
+            if (!Guild.verifyParty(role.id)) return await interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
 
             const embed = new MessageEmbed()
                 .setColor(role.color)
@@ -96,7 +96,7 @@ module.exports = {
                 .setDescription(`**Members:**\n${members.join(', ')}`)
                 .setFooter(`Size: ${members.length}`);
 
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
     },
 };

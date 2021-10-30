@@ -52,13 +52,13 @@ module.exports = {
 
             const reply = await interaction.reply({ embeds: [embed], components: [row], fetchReply: true });
 
-            const filter = i => {
-                i.deferUpdate();
+            const filter = async i => {
+                await i.deferUpdate();
                 return i.customId === 'previous' || i.customId === 'next';
             };
             const collector = reply.createMessageComponentCollector({ filter, componentType: 'BUTTON', idle: 15000, dispose: true });
 
-            collector.on('collect', i => {
+            collector.on('collect', async i => {
                 const description = [];
                 if (i.customId === 'next' && page < maxPages) {
                     page++;
@@ -83,15 +83,15 @@ module.exports = {
                     .setDescription(description.join('\n\n') + `\n\n\n__All total__: ${total.toLocaleString()} ${meso}`)
                     .setFooter(`Page: ${page}/${maxPages}`);
 
-                interaction.editReply({ embeds: [embed], components: [row] });
+                await interaction.editReply({ embeds: [embed], components: [row] });
             });
 
-            collector.on('end', () => {
-                interaction.editReply({ components: [] });
+            collector.on('end', async () => {
+                await interaction.editReply({ components: [] });
             });
         }
         else {
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
     },
 };

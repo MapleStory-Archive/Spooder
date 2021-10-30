@@ -24,17 +24,17 @@ module.exports = {
     async execute(interaction) {
         const { guild, options, channel } = interaction;
         const Guild = await db.Guild.findOne({ id: guild.id });
-        if (!Guild.salesChannelId) return interaction.reply({ embeds: [{ description: 'This server does not have a `sales` channel set up yet. Please use the `setchannel` command to set it up', color: 'YELLOW' }] });
+        if (!Guild.salesChannelId) return await interaction.reply({ embeds: [{ description: 'This server does not have a `sales` channel set up yet. Please use the `setchannel` command to set it up', color: 'YELLOW' }] });
         const salesChannel = guild.channels.cache.get(Guild.salesChannelId);
-        if (!salesChannel) return interaction.reply({ embeds: [{ description: 'The `sales` channel does not exist or has been deleted. Please use the `setchannel` command to set it up', color: 'RED' }] });
+        if (!salesChannel) return await interaction.reply({ embeds: [{ description: 'The `sales` channel does not exist or has been deleted. Please use the `setchannel` command to set it up', color: 'RED' }] });
 
         const dropNumber = options.getInteger('drop');
         const price = options.getInteger('price');
         const Drop = await db.Drop.findOne({ guildId: guild.id, number: dropNumber });
 
-        if (!Drop) return interaction.reply({ embeds: [{ description: `Drop \`${dropNumber}\` does not exist.`, color: 'RED' }] });
-        if (Drop.sold) return interaction.reply({ embeds: [{ description: `Drop \`${dropNumber}\` has already been marked as sold`, color: 'YELLOW' }] });
-        if (price < 0) return interaction.reply({ embeds: [{ description: 'You cannot input a negative price', color: 'RED' }] });
+        if (!Drop) return await interaction.reply({ embeds: [{ description: `Drop \`${dropNumber}\` does not exist.`, color: 'RED' }] });
+        if (Drop.sold) return await interaction.reply({ embeds: [{ description: `Drop \`${dropNumber}\` has already been marked as sold`, color: 'YELLOW' }] });
+        if (price < 0) return await interaction.reply({ embeds: [{ description: 'You cannot input a negative price', color: 'RED' }] });
 
         const boss = bossList[Drop.boss.toLowerCase()];
         const item = itemList[Drop.item];
@@ -73,7 +73,7 @@ module.exports = {
                     .setStyle('DANGER'),
             ]);
 
-        const reply = await interaction.reply({ embeds: [saleEmbed, confirmEmbed], components: [row], fetchReply: true });
+        const reply = await await interaction.reply({ embeds: [saleEmbed, confirmEmbed], components: [row], fetchReply: true });
 
         const buttonFilter = i => i.user.id === interaction.user.id && ['confirm', 'image', 'cancel'].includes(i.customId);
         const buttonCollector = reply.createMessageComponentCollector({ filter: buttonFilter, time: 60000 });
@@ -81,7 +81,7 @@ module.exports = {
         const msgCollector = channel.createMessageCollector({ filter: msgFilter, max: 1 });
 
         buttonCollector.on('collect', async i => {
-            i.deferUpdate();
+            await i.deferUpdate();
             const button = i.customId;
 
             if (button === 'confirm') {
@@ -109,7 +109,7 @@ module.exports = {
                 await dropMsg.react('💰');
 
                 await Drop.updateOne({ saleMessageId: saleMessage.id, price, sold: true });
-                return interaction.editReply({ embeds: [saleEmbed, { description: `[Drop #${Drop.number}](${dropMsg.url} 'View Drop') has been sucessfully marked as [sold](${saleMessage.url} 'View Sales Receipt').`, color: 'GREEN' }], components: [] });
+                return await interaction.editReply({ embeds: [saleEmbed, { description: `[Drop #${Drop.number}](${dropMsg.url} 'View Drop') has been sucessfully marked as [sold](${saleMessage.url} 'View Sales Receipt').`, color: 'GREEN' }], components: [] });
             }
             else if (button === 'image') {
                 const row = new MessageActionRow()
@@ -132,11 +132,11 @@ module.exports = {
                             .setEmoji('❌')
                             .setStyle('DANGER'),
                     ]);
-                interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row] });
+                await interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row] });
 
                 const msg = await channel.send({ embeds: [{ description: 'Please upload the image now.\nIt can be either an image file or a image link ending in `.png`, `.jpg`, or `.jpeg`' }] });
 
-                msgCollector.on('collect', m => {
+                msgCollector.on('collect', async m => {
                     m.delete();
                     const row = new MessageActionRow()
                         .addComponents([
@@ -160,11 +160,11 @@ module.exports = {
 
                     if (m.attachments.size) {
                         saleEmbed.setImage('attachment://screenshot.png');
-                        interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
+                        await interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
                     }
                     else if (m.content.endsWith('.png') || m.content.endsWith('.jpg') || m.content.endsWith('.jpeg')) {
                         saleEmbed.setImage(m.content);
-                        interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row] });
+                        await interaction.editReply({ embeds: [saleEmbed, confirmEmbed], components: [row] });
                     }
                     else return;
                 });
@@ -176,7 +176,7 @@ module.exports = {
             else {
                 buttonCollector.stop();
                 msgCollector.stop();
-                return interaction.editReply({ embeds: [saleEmbed, { description: 'Aborted!', color: 'RED' }], components: [] });
+                return await interaction.editReply({ embeds: [saleEmbed, { description: 'Aborted!', color: 'RED' }], components: [] });
             }
         });
     },

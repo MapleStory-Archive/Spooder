@@ -33,19 +33,19 @@ module.exports = {
         const type = interaction.options.getString('type');
         const channel = interaction.options.getChannel('channel');
 
-        if (channel.type !== 'GUILD_TEXT') return interaction.reply({ embeds: [{ description: 'You may only use `Text Channels`.', color: 'RED' }] });
+        if (channel.type !== 'GUILD_TEXT') return await interaction.reply({ embeds: [{ description: 'You may only use `Text Channels`.', color: 'RED' }] });
 
         if (type === 'drops') {
             await Guild.updateOne({ $set: { dropsChannelId: channel.id } });
-            return interaction.reply({ embeds: [{ description: `The \`drops\` channel has been sucessfully set to ${channel}` }] });
+            return await interaction.reply({ embeds: [{ description: `The \`drops\` channel has been sucessfully set to ${channel}` }] });
         }
         else if (type === 'Sales') {
             await Guild.updateOne({ $set: { salesChannelId: channel.id } });
-            return interaction.reply({ embeds: [{ description: `The \`Sales\` channel has been sucessfully set to ${channel}` }] });
+            return await interaction.reply({ embeds: [{ description: `The \`Sales\` channel has been sucessfully set to ${channel}` }] });
         }
         else {
             await Guild.updateOne({ $set: { paychecksChannelId: channel.id } });
-            return interaction.reply({ embeds: [{ description: `The \`paychecks\` channel has been sucessfully set to ${channel}` }] });
+            return await interaction.reply({ embeds: [{ description: `The \`paychecks\` channel has been sucessfully set to ${channel}` }] });
         }
     },
 };

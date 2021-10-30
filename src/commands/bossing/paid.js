@@ -99,23 +99,23 @@ module.exports = {
         const user = options.getUser('user');
         const Member = await db.Member.findOne({ guildId: guild.id, userId: user.id });
 
-        if (!Member) return interaction.reply({ embeds: [{ description: `${user} have not participated in a boss from this server yet.`, color: 'RED' }] });
+        if (!Member) return await interaction.reply({ embeds: [{ description: `${user} have not participated in a boss from this server yet.`, color: 'RED' }] });
 
         if (subcommand === 'single') {
             const dropNumber = options.getInteger('drop');
             const Drop = await db.Drop.findOne({ guildId: guild.id, number: dropNumber });
 
-            if (!Drop) return interaction.reply({ embeds: [{ description: `Drop \`#${dropNumber}\` does not exist.`, color: 'RED' }] });
+            if (!Drop) return await interaction.reply({ embeds: [{ description: `Drop \`#${dropNumber}\` does not exist.`, color: 'RED' }] });
 
-            if (!Member.verifyDrop(Drop)) return interaction.reply({ embeds: [{ description: `${user} was not part of Drop \`#${dropNumber}\`'s split.`, color: 'RED' }] });
+            if (!Member.verifyDrop(Drop)) return await interaction.reply({ embeds: [{ description: `${user} was not part of Drop \`#${dropNumber}\`'s split.`, color: 'RED' }] });
 
-            if (!Drop.sold) return interaction.reply({ embeds: [{ description: `Drop \`#${dropNumber}\` has not been sold yet.`, color: 'RED' }] });
+            if (!Drop.sold) return await interaction.reply({ embeds: [{ description: `Drop \`#${dropNumber}\` has not been sold yet.`, color: 'RED' }] });
 
-            if (!Member.verifyPaycheck(Drop)) return interaction.reply({ embeds: [{ description: `${user} has already been paid for Drop \`#${dropNumber}\`.`, color: 'RED' }] });
+            if (!Member.verifyPaycheck(Drop)) return await interaction.reply({ embeds: [{ description: `${user} has already been paid for Drop \`#${dropNumber}\`.`, color: 'RED' }] });
 
             await Member.updateOne({ $pull: { paychecks: Drop.id } });
 
-            return interaction.reply({ embeds: [{ description: `Successfully marked Drop \`#${dropNumber}\` as paid for ${user}.`, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `Successfully marked Drop \`#${dropNumber}\` as paid for ${user}.`, color: 'GREEN' }] });
         }
         else if (subcommand === 'multiple') {
             const dropNumbers = [
@@ -145,7 +145,7 @@ module.exports = {
                 else dne.push(`\`#${number}\``);
             }
 
-            if (dne.length) return interaction.reply({ embeds: [{ description: `Drop(s): ${dne.join(', ')} does not exist.`, color: 'RED' }] });
+            if (dne.length) return await interaction.reply({ embeds: [{ description: `Drop(s): ${dne.join(', ')} does not exist.`, color: 'RED' }] });
 
             for (const Drop of Drops) {
                 if (!Member.verifyDrop(Drop)) excluded.push(`\`#${Drop.number}\``);
@@ -158,17 +158,17 @@ module.exports = {
             if (excluded.length) text.push(`${user} was not part of Drop(s) ${excluded.join(', ')}'s split(s).`);
             if (unsold.length) text.push(`Drop(s) ${unsold.join(', ')} has not been sold yet.`);
             if (paid.length) text.push(`${user} has already been paid for Drop(s) ${paid.join(', ')}.`);
-            if (text.length) return interaction.reply({ embeds: [{ description: text.join('\n'), color: 'RED' }] });
+            if (text.length) return await interaction.reply({ embeds: [{ description: text.join('\n'), color: 'RED' }] });
 
             await Member.updateOne({ $pull: { paychecks: { $in: drops } } });
 
-            return interaction.reply({ embeds: [{ description: `Successfully marked Drop(s) ${dropNumbers.map(number => `\`#${number}\``).join(', ')} as paid for ${user}.`, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `Successfully marked Drop(s) ${dropNumbers.map(number => `\`#${number}\``).join(', ')} as paid for ${user}.`, color: 'GREEN' }] });
         }
         else {
             const drops = Member.paychecks.map(drop => `\`#${drop.number}\``);
             await Member.updateOne({ $set: { paychecks: [] } });
 
-            return interaction.reply({ embeds: [{ description: `Successfully marked Drops ${drops.join(', ')} as paid for ${user}.`, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `Successfully marked Drops ${drops.join(', ')} as paid for ${user}.`, color: 'GREEN' }] });
         }
     },
 };

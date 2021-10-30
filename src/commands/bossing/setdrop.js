@@ -160,9 +160,9 @@ module.exports = {
         const { guild, options, channel } = interaction;
         const Guild = await db.Guild.findOne({ id: guild.id });
 
-        if (!Guild.dropsChannelId) return interaction.reply({ embeds: [{ description: 'This server does not have a `drops` channel yet. Please use the `setchannel` command to set it up.', color: 'YELLOW' }] });
+        if (!Guild.dropsChannelId) return await interaction.reply({ embeds: [{ description: 'This server does not have a `drops` channel yet. Please use the `setchannel` command to set it up.', color: 'YELLOW' }] });
         const dropsChannel = guild.channels.cache.get(Guild.dropsChannelId);
-        if (!dropsChannel) return interaction.reply({ embeds: [{ description: 'The `drops` channel does not exist or has been deleted. Please use the `setchannel` command to set it up again.', color: 'YELLOW' }] });
+        if (!dropsChannel) return await interaction.reply({ embeds: [{ description: 'The `drops` channel does not exist or has been deleted. Please use the `setchannel` command to set it up again.', color: 'YELLOW' }] });
 
         const bossName = options.getString('boss');
         const itemName = options.getString('item').replace(/[^a-z]/gi, '').toLowerCase();
@@ -171,7 +171,7 @@ module.exports = {
         const members = []; // Stores Discord role members.
         let partySize = 0;
 
-        if (!item) return interaction.reply({ embeds: [{ description: `Item \`${itemName}\` does not belong to \`${boss.name}\`, or there was a typo.`, color: 'RED' }] });
+        if (!item) return await interaction.reply({ embeds: [{ description: `Item \`${itemName}\` does not belong to \`${boss.name}\`, or there was a typo.`, color: 'RED' }] });
 
         const embed = new MessageEmbed()
             .setColor(boss.color)
@@ -202,12 +202,12 @@ module.exports = {
         if (options.getSubcommand() === 'party') {
             const role = options.getRole('role');
 
-            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
+            if (!Guild.verifyParty(role.id)) return await interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
 
             role.members.each(member => members.push(member));
             partySize = members.length;
 
-            if (members.length > 6) return interaction.reply({ embeds: [{ description: `**Something is wrong**.\n${role} has over 6 members (${partySize}).\nPlease edit or recreate the party.`, color: 'YELLOW' }] });
+            if (members.length > 6) return await interaction.reply({ embeds: [{ description: `**Something is wrong**.\n${role} has over 6 members (${partySize}).\nPlease edit or recreate the party.`, color: 'YELLOW' }] });
 
             embed.addField(`Party: (size: ${partySize})`, `${members.sort((first, second) => first.id - second.id).join(', ')}`);
         }
@@ -225,13 +225,13 @@ module.exports = {
             party.forEach(member => members.push(member));
             partySize = members.length + randoms;
 
-            if (partySize > 6) return interaction.reply({ embeds: [{ description: `**Something is wrong**.\nYou included over has over 6 members, \`${members.length} users\` and \`${randoms} randoms\`.\nPlease recreate the party.`, color: 'YELLOW' }] });
-            if ((new Set(members)).size !== members.length) return interaction.reply({ embeds: [{ description: '**Something is wrong**.\nYou have entered a member more than once.\nPlease recreate the party.', color: 'YELLOW' }] });
+            if (partySize > 6) return await interaction.reply({ embeds: [{ description: `**Something is wrong**.\nYou included over has over 6 members, \`${members.length} users\` and \`${randoms} randoms\`.\nPlease recreate the party.`, color: 'YELLOW' }] });
+            if ((new Set(members)).size !== members.length) return await interaction.reply({ embeds: [{ description: '**Something is wrong**.\nYou have entered a member more than once.\nPlease recreate the party.', color: 'YELLOW' }] });
 
             embed.addField(`Party: (size: ${partySize})`, `${members.sort((first, second) => first.id - second.id).join(', ')}${randoms ? `, + ${randoms} randoms` : ''}`);
         }
 
-        const reply = await interaction.reply({ embeds: [embed, confirmEmbed], components: [row], fetchReply: true });
+        const reply = await await interaction.reply({ embeds: [embed, confirmEmbed], components: [row], fetchReply: true });
 
         const buttonFilter = i => i.user.id === interaction.user.id && ['confirm', 'image', 'cancel'].includes(i.customId);
         const buttonCollector = reply.createMessageComponentCollector({ filter: buttonFilter, time: 60000 });
@@ -239,7 +239,7 @@ module.exports = {
         const msgCollector = channel.createMessageCollector({ filter: msgFilter, max: 1 });
 
         buttonCollector.on('collect', async i => {
-            i.deferUpdate();
+            await i.deferUpdate();
             const button = i.customId;
 
             if (button === 'confirm') {
@@ -281,7 +281,7 @@ module.exports = {
 
                 const dropMessage = image ? await dropsChannel.send({ embeds: [embed], files: [{ attachment: image, name: 'screenshot.png' }] }) : await dropsChannel.send({ embeds: [embed] });
                 await Drop.updateOne({ dropMessageId: dropMessage.id, $push: { party: Members } });
-                return interaction.editReply({ embeds: [embed, { description: `Sucessfully created a new [drop](${dropMessage.url}).`, color: 'GREEN' }], components: [] });
+                return await interaction.editReply({ embeds: [embed, { description: `Sucessfully created a new [drop](${dropMessage.url}).`, color: 'GREEN' }], components: [] });
             }
             else if (button === 'image') {
                 const row = new MessageActionRow()
@@ -305,11 +305,11 @@ module.exports = {
                             .setStyle('DANGER'),
                     ]);
 
-                interaction.editReply({ embeds: [embed, confirmEmbed], components: [row] });
+                await interaction.editReply({ embeds: [embed, confirmEmbed], components: [row] });
 
                 const msg = await channel.send({ embeds: [{ description: 'Please upload the image now.\nIt can be either an image file or a image link ending in `.png`, `.jpg`, or `.jpeg`' }] });
 
-                msgCollector.on('collect', m => {
+                msgCollector.on('collect', async m => {
                     m.delete();
                     const row = new MessageActionRow()
                         .addComponents([
@@ -333,11 +333,11 @@ module.exports = {
 
                     if (m.attachments.size) {
                         embed.setImage('attachment://screenshot.png');
-                        interaction.editReply({ embeds: [embed, confirmEmbed], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
+                        await interaction.editReply({ embeds: [embed, confirmEmbed], components: [row], files: [{ attachment: m.attachments.first().url, name: 'screenshot.png' }] });
                     }
                     else if (m.content.endsWith('.png') || m.content.endsWith('.jpg') || m.content.endsWith('.jpeg')) {
                         embed.setImage(m.content);
-                        interaction.editReply({ embeds: [embed, confirmEmbed], components: [row] });
+                        await interaction.editReply({ embeds: [embed, confirmEmbed], components: [row] });
                     }
                     else return;
                 });
@@ -349,7 +349,7 @@ module.exports = {
             else {
                 buttonCollector.stop();
                 msgCollector.stop();
-                return interaction.editReply({ embeds: [embed, { description: 'Aborted!', color: 'RED' }], components: [] });
+                return await interaction.editReply({ embeds: [embed, { description: 'Aborted!', color: 'RED' }], components: [] });
             }
         });
     },

@@ -11,7 +11,7 @@ module.exports = {
             required: true,
         }],
     },
-    execute(interaction) {
+    async execute(interaction) {
         const dataValue = interaction.options.getString('expression');
         const expression = dataValue.split(/ +/).join('').split('');
         const fixedExpression = dataValue.split('^').join('**').replace(/\s+/g, '');
@@ -33,6 +33,6 @@ module.exports = {
             embed.setColor('RED').addField('Ooutput:', `\`\`\`${expression.join('')} is not a valid expression.\`\`\``);
         }
 
-        return interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

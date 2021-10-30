@@ -21,7 +21,7 @@ module.exports = {
             const { user } = interaction;
             const Member = await db.Member.findOne({ guildId: guild.id, userId: user.id });
 
-            if (!Member) return interaction.reply({ embeds: [{ description: 'You have not participated in a boss from this server yet.', color: 'RED' }] });
+            if (!Member) return await interaction.reply({ embeds: [{ description: 'You have not participated in a boss from this server yet.', color: 'RED' }] });
 
             const drops = [];
 
@@ -35,12 +35,12 @@ module.exports = {
                 .addField('Pending Payments:', `${drops.length ? drops.join('\n') : 'No pending payments.'}`)
                 .addField('Pending Total:', `${Member.payment.toLocaleString()} ${meso}`);
 
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
         else {
             const Member = await db.Member.findOne({ guildId: guild.id, userId: user.id });
 
-            if (!Member) return interaction.reply({ embeds: [{ description: `${user} have not participated in a boss from this server yet.`, color: 'RED' }] });
+            if (!Member) return await interaction.reply({ embeds: [{ description: `${user} have not participated in a boss from this server yet.`, color: 'RED' }] });
 
             const drops = [];
 
@@ -54,7 +54,7 @@ module.exports = {
                 .addField('Pending Payments:', `${drops.length ? drops.join('\n') : 'No pending payments.'}`)
                 .addField('Pending Total:', `${Member.payment.toLocaleString()} ${meso}`);
 
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
     },
 };

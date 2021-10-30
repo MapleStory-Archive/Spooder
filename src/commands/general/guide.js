@@ -20,6 +20,6 @@ module.exports = {
             .setDescription(text.join('\n'))
             .setFooter('Each command should be pretty self explanatory.');
 
-        await interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

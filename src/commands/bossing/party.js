@@ -123,64 +123,64 @@ module.exports = {
                 interaction.options.getMember('member-6'),
             ].filter(Boolean);
 
-            if ((new Set(members)).size !== members.length) return interaction.reply({ embeds: [{ description: 'Something is wrong.\nYou have entered a member more than once.\nPlease recreate the party.', color: 'YELLOW' }] });
+            if ((new Set(members)).size !== members.length) return await interaction.reply({ embeds: [{ description: 'Something is wrong.\nYou have entered a member more than once.\nPlease recreate the party.', color: 'YELLOW' }] });
 
             for (const member of members) {
                 member.roles.add(role);
             }
 
             await Guild.updateOne({ $push: { parties: role.id } });
-            return interaction.reply({ embeds: [{ description: `Created ${role} with members: ${members}`, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `Created ${role} with members: ${members}`, color: 'GREEN' }] });
         }
         else if (subcommand === 'delete') {
             const role = interaction.options.getRole('role');
 
-            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
+            if (!Guild.verifyParty(role.id)) return await interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
 
             role.delete();
             await Guild.updateOne({ $pull: { parties: role.id } });
-            return interaction.reply({ embeds: [{ description: `Sucessfully deleted \`${role.name}\``, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `Sucessfully deleted \`${role.name}\``, color: 'GREEN' }] });
         }
         else if (subcommand === 'edit') {
             const role = interaction.options.getRole('role');
             const action = interaction.options.getString('action');
             const member = interaction.options.getMember('member');
 
-            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
+            if (!Guild.verifyParty(role.id)) return await interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
 
             if (action === 'add') {
-                if (role.members.size >= 6) return interaction.reply({ embeds: [{ description: `${role} already has 6 members. You cannot add anymore`, color: 'RED' }] });
-                if (member.roles.cache.has(role.id)) return interaction.reply({ embeds: [{ description: `${member} is already in ${role}.`, color: 'YELLOW' }] });
+                if (role.members.size >= 6) return await interaction.reply({ embeds: [{ description: `${role} already has 6 members. You cannot add anymore`, color: 'RED' }] });
+                if (member.roles.cache.has(role.id)) return await interaction.reply({ embeds: [{ description: `${member} is already in ${role}.`, color: 'YELLOW' }] });
 
                 member.roles.add(role);
-                return interaction.reply({ embeds: [{ description: `Sucessfully added ${member} to ${role}.`, color: 'GREEN' }] });
+                return await interaction.reply({ embeds: [{ description: `Sucessfully added ${member} to ${role}.`, color: 'GREEN' }] });
             }
             else {
-                if (role.members.size === 0) return interaction.reply({ embeds: [{ description: `${role} has 0 members. There is no one to remove.`, color: 'RED' }] });
-                if (!member.roles.cache.has(role.id)) return interaction.reply({ embeds: [{ description: `${member} is not in ${role}.`, color: 'RED' }] });
+                if (role.members.size === 0) return await interaction.reply({ embeds: [{ description: `${role} has 0 members. There is no one to remove.`, color: 'RED' }] });
+                if (!member.roles.cache.has(role.id)) return await interaction.reply({ embeds: [{ description: `${member} is not in ${role}.`, color: 'RED' }] });
 
                 member.roles.remove(role);
-                return interaction.reply({ embeds: [{ description: `Sucessfully removed ${member} from ${role}.`, color: 'GREEN' }] });
+                return await interaction.reply({ embeds: [{ description: `Sucessfully removed ${member} from ${role}.`, color: 'GREEN' }] });
             }
         }
         else if (subcommand === 'link') {
             const role = interaction.options.getRole('role');
             const members = role.members;
 
-            if (role.managed) return interaction.reply({ embeds: [{ description: `${role} is a \`managed\` role. You cannot use that as a party role.`, color: 'RED' }] });
-            if (Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is already a party role.`, color: 'RED' }] });
-            if (members.size > 6) return interaction.reply({ embeds: [{ description: `This role has ${members.size} users. You cannot create a party with over 6 members.`, color: 'RED' }] });
+            if (role.managed) return await interaction.reply({ embeds: [{ description: `${role} is a \`managed\` role. You cannot use that as a party role.`, color: 'RED' }] });
+            if (Guild.verifyParty(role.id)) return await interaction.reply({ embeds: [{ description: `${role} is already a party role.`, color: 'RED' }] });
+            if (members.size > 6) return await interaction.reply({ embeds: [{ description: `This role has ${members.size} users. You cannot create a party with over 6 members.`, color: 'RED' }] });
 
             await Guild.updateOne({ $push: { parties: role.id } });
-            return interaction.reply({ embeds: [{ description: `${role} is now a party with members: ${members.size ? members.map(member => member).sort((first, second) => first.id - second.id).join(', ') : '`none`'}`, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `${role} is now a party with members: ${members.size ? members.map(member => member).sort((first, second) => first.id - second.id).join(', ') : '`none`'}`, color: 'GREEN' }] });
         }
         else if (subcommand === 'unlink') {
             const role = interaction.options.getRole('role');
 
-            if (!Guild.verifyParty(role.id)) return interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
+            if (!Guild.verifyParty(role.id)) return await interaction.reply({ embeds: [{ description: `${role} is not a party role.`, color: 'RED' }] });
 
             await Guild.updateOne({ $pull: { parties: role.id } });
-            return interaction.reply({ embeds: [{ description: `${role} is no longer a party role.`, color: 'GREEN' }] });
+            return await interaction.reply({ embeds: [{ description: `${role} is no longer a party role.`, color: 'GREEN' }] });
         }
     },
 };
